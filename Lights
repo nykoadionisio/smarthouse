@@ -1,0 +1,172 @@
+Lights
+
+import RPi.GPIO as GPIO
+import time
+
+#setup
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(27, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
+on = True
+switch = 0
+light = 0
+
+#Main Loop
+while on:
+    #Picking the room
+    print("Hallway 1 = 1")
+    print("Hallway 2 = 2")
+    print("Washroom = 3")
+    print("Bedroom 1 = 4")
+    print("Bedroom 2 = 5")
+    print("All on = 6")
+    print("All off = 7")
+    print("Emergency off = 10")
+    light = int(input("Please enter the number of the room you would like to access: "))
+    
+    #Hallway 1
+    if light == 1:
+        print("yes = 1")
+        print("no = 2")
+        switch = int(input("Would you like it on? "))
+    
+        if switch == 1:
+            GPIO.output(17, GPIO.HIGH)
+            print("Understood, keeping it on.")
+            
+        if switch == 2:
+            GPIO.output(17, GPIO.LOW)
+            print("Understood, turning it off")
+            GPIO.cleanup
+        
+        else:
+            print("Please input again")
+    
+    #Hallway 2
+    if light == 2:
+        print("1 = yes")
+        print("2 = no")
+        switch = int(input("Would you like it on? "))
+    
+
+        if switch == 1:
+            GPIO.output(27, GPIO.HIGH)
+            print("Understood, keeping it on.")
+            
+        if switch == 2:
+            GPIO.output(27, GPIO.LOW)
+            print("Understood, turning it off")
+            GPIO.cleanup
+    
+    #Washroom
+    if light == 3:
+        print("1 = yes")
+        print("2 = no")
+        switch = int(input("Would you like it on? "))
+    
+
+        if switch == 1:
+            GPIO.output(22, GPIO.HIGH)
+            print("Understood, keeping it on.")
+            
+        if switch == 2:
+            GPIO.output(22, GPIO.LOW)
+            print("Understood, turning it off")
+            GPIO.cleanup
+            
+    #Bedroom 1
+    if light == 4:
+        print("yes = 1")
+        print("no = 2")
+        switch = int(input("Would you like it on? "))
+    
+        if switch == 1:
+            GPIO.output(23, GPIO.HIGH)
+            print("Understood, keeping it on.")
+            
+        if switch == 2:
+            GPIO.output(23, GPIO.LOW)
+            print("Understood, turning it off")
+            GPIO.cleanup
+        
+        else:
+            print("Please input again")
+    
+    #Bedroom 2
+    if light == 5:
+        print("yes = 1")
+        print("no = 2")
+        switch = int(input("Would you like it on? "))
+    
+        if switch == 1:
+            GPIO.output(24, GPIO.HIGH)
+            print("Understood, keeping it on.")
+            
+        if switch == 2:
+            GPIO.output(24, GPIO.LOW)
+            print("Understood, turning it off")
+            GPIO.cleanup
+        
+        else:
+            print("Please input again")
+            
+     #All on
+    if light == 6:
+        print("Yes = 1")
+        print("No = 2")
+        switch = int(input("Are you sure?: "))
+        
+        if switch == 1:
+            GPIO.output(17, GPIO.HIGH)
+            GPIO.output(27, GPIO.HIGH)
+            GPIO.output(22, GPIO.HIGH)
+            GPIO.output(23, GPIO.HIGH)
+            GPIO.output(24, GPIO.HIGH)
+            GPIO.cleanup
+        
+        if switch == 2:
+            GPIO.cleanup
+            continue
+     #All off
+    if light == 7:
+        print("Yes = 1")
+        print("No = 2")
+        switch = int(input("Are you sure?: "))
+        
+        if switch == 1:
+            GPIO.output(17, GPIO.LOW)
+            GPIO.output(27, GPIO.LOW)
+            GPIO.output(22, GPIO.LOW)
+            GPIO.output(23, GPIO.LOW)
+            GPIO.output(24, GPIO.LOW)
+            GPIO.cleanup
+        
+        if switch == 2:
+            GPIO.cleanup
+            continue
+
+
+    #Emergency
+    if light == 10:
+        print("Yes = 1")
+        print("No = 2")
+        switch = int(input("Are you sure?: "))
+        
+        if switch == 1:
+            GPIO.output(17, GPIO.LOW)
+            GPIO.output(27, GPIO.LOW)
+            GPIO.output(22, GPIO.LOW)
+            GPIO.output(23, GPIO.LOW)
+            GPIO.output(24, GPIO.LOW)
+            GPIO.cleanup
+            on = False
+        
+        if switch == 2:
+            GPIO.cleanup
+            continue
+
+        else:
+            print("Please input again")
