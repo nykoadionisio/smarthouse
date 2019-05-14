@@ -1,0 +1,1 @@
+This project was one for the grade 10 Mechatronics program. I programmed this on a Raspberry Pi. It was used for the second floor of the house. The other codes arent able to be found on an email and I'm too lazy to go to the Pi and find the codes.
