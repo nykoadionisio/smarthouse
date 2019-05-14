@@ -1,0 +1,32 @@
+#Buzzer
+
+import RPi.GPIO as GPIO
+import time
+
+#Pin for thing
+Pin = 26
+
+def setup():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(Pin, GPIO.OUT)
+    GPIO.output(Pin, GPIO.HIGH)
+    
+def loop():
+    while True:
+        GPIO.output(Pin, GPIO.LOW)
+        time.sleep(0.1)
+        GPIO.output(Pin, GPIO.HIGH)
+        time.sleep(0,1)
+        
+def destroy():
+    GPIO.output(Pin, GPIO.HIGH)
+    GPIO.cleanup()
+    
+if __name__ == '__main__':
+    print("Press CTRL + C to end the program")
+    setup()
+    try:
+        loop()
+    except KeyboardInterrupt:
+        destroy
+        
